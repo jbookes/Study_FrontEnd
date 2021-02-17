@@ -5,12 +5,17 @@ const greeting = document.querySelector(".js-greetings");
 const USER_LS = "currentUser";
 const SHOWING_CN = "showing";
 
+function saveName(text) {
+  localStorage.setItem(USER_LS, text);
+}
+
 function handleSubmit(event) {
   // 보통 이벤트가 발생하면 root에서 일어남
   event.preventDefault(); // Enter 입력시 새로고침 X
-  const currentUser = input.value;
-  paintGreeting(currentUser);
-  console.log(currentUser);
+  const currentValue = input.value;
+  paintGreeting(currentValue);
+  console.log(currentValue);
+  saveName(currentValue); // saveName 값 저장시킴
 }
 
 function askForName() {
@@ -22,7 +27,7 @@ function askForName() {
 function paintGreeting(text) {
   form.classList.remove(SHOWING_CN);
   greeting.classList.add(SHOWING_CN);
-  greeting.innerText = `Hello ${text}`;
+  greeting.innerText = `HI ${text}`;
 }
 
 // application -> storage -> 저장
